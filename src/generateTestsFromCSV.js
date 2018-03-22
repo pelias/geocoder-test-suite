@@ -56,7 +56,8 @@ const testCaseStream = through.obj( (record, encoding, callback) => {
   }
   else if (record.Request === 'Full Address') {
     testCase.in = {
-      text: `${record.House_Number} ${record.Street_Name} ${record.Street_Type} ${record.Unit_Number} ${record.Unit_Type}, ${record.City} ${record.Zip}`
+      text: `${record.House_Number} ${record.Street_Name} ${record.Street_Type}` +
+      ` ${record.Unit_Number} ${record.Unit_Type}, ${record.City} ${record.Zip}`
     };
     testCase.expected.properties[0].layer = 'address';
     testCase.expected.properties[0].housenumber = record.House_Number;
