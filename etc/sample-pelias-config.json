@@ -1,0 +1,12 @@
+{
+  "acceptance-tests": {
+    "generateTests": {
+      "inputCSVFile": "./input_files/Geocoder Test Suite - Locations.csv",
+      "distanceThresh": 150,
+      "outputTestsDir": "./geocoder_tests"
+    },
+    "endpoints": {
+      "local": "http://localhost:4000/v1/"
+    }
+  }
+}
