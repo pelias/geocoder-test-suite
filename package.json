@@ -1,14 +1,20 @@
 {
-  "name": "geocoder-test-suite",
-  "version": "1.0.0",
+  "name": "pelias-geocoder-test-suite",
+  "version": "0.0.0",
   "description": "geocoding api test suite that generates tests on demand and runs them against a instance of the Pelias engine",
   "main": "index.js",
   "scripts": {
-    "make-tests": "node importTrimetTests.js",
-    "start": "node_modules/pelias-fuzzy-tester/bin/fuzzy-tester"
+    "test": "",
+    "make-tests": "node src/generateTestsFromCSV.js",
+    "start": "node_modules/pelias-fuzzy-tester/bin/fuzzy-tester",
+    "lint": "jshint .",
+    "validate": "npm ls",
+    "travis": "npm run check-dependencies && npm run test",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "check-dependencies": "node_modules/.bin/npm-check --production"
   },
   "keywords": [
-    "test"
+    "acceptance-tests", "generated-tests"
   ],
   "author": "Diana Shkolnikov, Pelias",
   "license": "MIT",
@@ -18,5 +24,23 @@
     "pelias-config": "^2.14.0",
     "pelias-fuzzy-tester": "^0.10.6",
     "through2": "^2.0.3"
-  }
+  },
+  "devDependencies": {
+    "jshint": "^2.9.4",
+    "npm-check": "git://github.com/orangejulius/npm-check.git#disable-update-check",
+    "precommit-hook": "3.0.0",
+    "semantic-release": "^15.0.0",
+    "tap-spec": "4.1.1",
+    "tape": "^4.5.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pelias/geocoder-test-suite.git"
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test",
+    "check-dependencies"
+  ]
 }
